@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://f7t6qcw3k5ik"]
+
+[ext_resource type="Texture2D" uid="uid://cv1xd85v05qka" path="res://icon.svg" id="1_mdedk"]
+[ext_resource type="PackedScene" uid="uid://bhgyeh500i63e" path="res://scenes/instances/player_proto.tscn" id="2_x1uek"]
+
+[sub_resource type="HeightMapShape3D" id="HeightMapShape3D_mdedk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x1uek"]
+albedo_texture = ExtResource("1_mdedk")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x1uek"]
+size = Vector2(1, 1)
+
+[node name="SandBox" type="Node3D" unique_id=582594650]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=986726277]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1317173901]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
+shape = SubResource("HeightMapShape3D_mdedk")
+
+[node name="Ground" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D" unique_id=1730747580]
+material_override = SubResource("StandardMaterial3D_x1uek")
+mesh = SubResource("PlaneMesh_x1uek")
+
+[node name="Player" parent="." unique_id=348325141 instance=ExtResource("2_x1uek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1122803844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5217702, 2.2300177, 2.143189)
